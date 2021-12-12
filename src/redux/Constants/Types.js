@@ -1,0 +1,1 @@
+export const GET_MOVIE_FOR_HOME = "GET_MOVIE_FOR_HOME";
