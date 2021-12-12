@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
+
+.activeType {
+    @apply flex items-center justify-center w-1/2 gap-2 cursor-pointer text-white;
+}
+
+.inactiveType {
+    @apply flex items-center justify-center w-1/2 gap-2 cursor-pointer text-gray-500;
+}

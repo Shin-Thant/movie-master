@@ -1,0 +1,71 @@
+.card {
+    width: 24%;
+    background-color: #1f1f1f;
+    position: relative;
+}
+
+.card-img-container > img {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    pointer-events: none;
+}
+
+.card-hover {
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    /* top: -100%;
+    left: 50%; */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 75%;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 10px;
+    overflow: hidden;
+
+    transition: all 350ms ease;
+}
+.card-hover button {
+    transform: translateY(-200px);
+    transition: all 500ms ease;
+    pointer-events: all;
+}
+.card-img-container:hover .card-hover {
+    opacity: 1;
+}
+.card-img-container:hover .card-hover button {
+    transform: translateY(0);
+}
+
+@media screen and (max-width: 1128px) {
+    .card {
+        width: 30%;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .card {
+        width: 32%;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .card {
+        width: 43%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .card {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .card {
+        width: 85%;
+    }
+}
