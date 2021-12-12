@@ -1,0 +1,17 @@
+.types {
+    border-bottom: 1px solid #313131;
+}
+.activeType {
+    position: relative;
+}
+.activeType::before {
+    content: "";
+    position: absolute;
+    bottom: -30%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    background-color: red;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+}

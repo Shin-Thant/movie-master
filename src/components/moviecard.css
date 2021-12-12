@@ -60,12 +60,12 @@
 
 @media screen and (max-width: 600px) {
     .card {
-        width: 80%;
+        width: 75%;
     }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 550px) {
     .card {
-        width: 85%;
+        width: 80%;
     }
 }

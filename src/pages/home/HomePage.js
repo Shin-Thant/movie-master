@@ -6,6 +6,7 @@ import { useQuery } from "react-query";
 import { getMoviesAndSeries } from "../../api/getMoviesAndSeries";
 import { MovieCard } from "../../components/MovieCard";
 import { Skeleton } from "../../components/Skeleton";
+import "./homepage.css";
 
 export const HomePage = () => {
     const [active, setActive] = useState("movie");
@@ -30,7 +31,7 @@ export const HomePage = () => {
             <HomePageIntro />
 
             <div className="w-full md:w-4/5 mx-auto mt-10 pb-5">
-                <div className="flex items-center mb-8 pb-6">
+                <div className="flex items-center mb-8 pb-6 types">
                     <div
                         onClick={typeMovie}
                         className={
