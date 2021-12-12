@@ -12,7 +12,7 @@ export const MovieCard = ({ img, name, rating, count }) => {
                 className="h-3/4 w-full overflow-hidden flex justify-center card-img-container mb-3 px-4
             "
             >
-                <div className="card-hover px-4 py-2 flex flex-row justify-center items-center gap-4">
+                <div className="card-hover px-4 py-2 flex flex-col s_base:flex-row md:flex-row justify-center items-center gap-4">
                     <button className="bg-primary text-semibold text-sm rounded-full px-3 py-2 flex items-center gap-1 shadow-primary">
                         <BsFillPlayFill style={{ fontSize: "22px" }} />
                         VIEW DETAILS
