@@ -1,0 +1,15 @@
+.trends-card {
+    min-width: 240px;
+    width: 240px;
+    height: 415px;
+    background-color: #1f1f1f;
+    position: relative;
+    /* min-height: max-content; */
+}
+
+.trends-card-img-container > img {
+    width: 90%;
+    object-fit: cover;
+    border-radius: 10px;
+    pointer-events: none;
+}

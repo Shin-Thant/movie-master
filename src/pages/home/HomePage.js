@@ -12,6 +12,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { changeStatus } from "../../redux/Actions/FilterActions";
 import { FiTrendingUp } from "react-icons/fi";
 import { FaFire } from "react-icons/fa";
+import { getTrends } from "../../api/getTrends";
+import { TrendsCard } from "../../components/TrendsCard";
+import { BsChevronCompactRight, BsChevronCompactLeft } from "react-icons/bs";
 
 export const HomePage = () => {
     const { movieGenreIds, movies, movieStatus, movieLoading } = useSelector(
@@ -25,6 +28,10 @@ export const HomePage = () => {
     const dispatch = useDispatch();
 
     const [active, setActive] = useState("movie");
+
+    const [media_type, setMediaType] = useState("all");
+
+    const [time, setTime] = useState("day");
 
     const { isLoading, error, data } = useQuery(
         ["type", { active }],
@@ -43,13 +50,24 @@ export const HomePage = () => {
         dispatch(changeStatus("series"));
     };
 
-    const [role, setRole] = useState("trend");
+    const trends = useQuery(["get", { media_type, time }], getTrends, {
+        staleTime: 600000,
+    });
+    console.log(trends);
 
-    const trendsNow = () => {
-        setRole("trend");
+    const changeMediaType = (e) => {
+        setMediaType(e.target.value);
     };
-    const popular = () => {
-        setRole("popular");
+
+    const changeTime = (e) => {
+        setTime(e.target.value);
+    };
+
+    const left = () => {
+        document.getElementById("cards-container").scrollLeft -= 300;
+    };
+    const right = () => {
+        document.getElementById("cards-container").scrollLeft += 300;
     };
 
     return (
@@ -57,59 +75,76 @@ export const HomePage = () => {
             <HomePageIntro />
 
             <div className="w-full mt-10">
-                <div className="w-11/12 sm:w-full mx-auto flex items-center mb-8 pb-6 types">
-                    <div
-                        onClick={trendsNow}
-                        className={
-                            role === "trend" ? " activeType" : "inactiveType"
-                        }
-                    >
-                        <FiTrendingUp
-                            className={
-                                role === "trend"
-                                    ? "text-lg sm:text-xl md:text-2xl font-bold transition-all duration-300"
-                                    : "text-base sm:text-base font-medium transition-all duration-300"
-                            }
-                        />
-                        <span
-                            className={
-                                role === "trend"
-                                    ? "text-lg sm:text-xl md:text-2xl font-bold transition-all duration-300"
-                                    : "text-base sm:text-base font-medium transition-all duration-300"
-                            }
-                        >
+                <div className="s_base:w-11/12 md:w-10/12 s_tablet:w-4/5 mx-auto flex items-center justify-center mb-5 pb-6 types">
+                    <div className="activeRole flex items-center justify-center w-1/2 gap-2 text-white">
+                        <FiTrendingUp className="text-lg sm:text-xl md:text-2xl font-bold " />
+                        <span className="text-lg sm:text-xl md:text-2xl font-bold ">
                             Trends Now
                         </span>
                     </div>
-
-                    <div
-                        onClick={popular}
-                        className={
-                            role === "popular" ? "activeType" : "inactiveType"
-                        }
-                    >
-                        <FaFire
-                            className={
-                                role === "popular"
-                                    ? "text-lg sm:text-xl md:text-2xl font-bold transition-all duration-300"
-                                    : "text-base sm:text-base font-medium transition-all duration-300"
-                            }
-                        />
-                        <span
-                            className={
-                                role === "popular"
-                                    ? "text-lg sm:text-xl md:text-2xl font-bold transition-all duration-300"
-                                    : "text-base sm:text-base font-medium transition-all duration-300"
-                            }
+                </div>
+                <div className="s_base:w-11/12 md:w-10/12 s_tablet:w-4/5 mx-auto flex items-center gap-5 mb-8">
+                    <div>
+                        <select
+                            value={media_type}
+                            onChange={changeMediaType}
+                            className="type-select"
                         >
-                            Popular
-                        </span>
+                            <option value="all">All</option>
+                            <option value="movie">Movie</option>
+                            <option value="tv">Tv</option>
+                        </select>
+                    </div>
+                    <div>
+                        <select
+                            value={time}
+                            onChange={changeTime}
+                            className="type-select"
+                        >
+                            <option value="day">Day</option>
+                            <option value="week">Week</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div className="w-full relative">
+                    <div className="left-btn text-4xl lg:text-5xl flex justify-center items-center text-gray-400 hover:text-gray-200">
+                        <button onClick={left} className="cursor-pointer w-max">
+                            <BsChevronCompactLeft />
+                        </button>
+                    </div>
+                    <div
+                        className="w-full flex items-start overflow-auto gap-x-4 px-8 sm:px-19 md:px-20 lg:px-24 py-4"
+                        id="cards-container"
+                    >
+                        {trends.isLoading
+                            ? [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map(
+                                  (item) => <Skeleton key={item} />
+                              )
+                            : trends.data?.results?.map((item, index) => (
+                                  <TrendsCard
+                                      key={index}
+                                      img={item.poster_path}
+                                      name={item.name ? item.name : item.title}
+                                      rating={item.vote_average}
+                                      count={item.vote_count}
+                                      overview={item.overview}
+                                  />
+                              ))}
+                    </div>
+                    <div className="right-btn text-4xl lg:text-5xl flex justify-center items-center text-gray-400 hover:text-gray-200">
+                        <button
+                            onClick={right}
+                            className="cursor-pointer w-max"
+                        >
+                            <BsChevronCompactRight />
+                        </button>
                     </div>
                 </div>
             </div>
 
             <div className="w-full sm:w-11/12 md:w-10/12 s_tablet:w-4/5 mx-auto mt-10 pb-5">
-                <div className="flex items-center mb-8 pb-6 types w-11/12 sm:w-full mx-auto">
+                <div className="flex justify-around items-center mb-8 pb-6 types w-11/12 sm:w-full mx-auto">
                     <div
                         onClick={typeMovie}
                         className={
