@@ -28,7 +28,10 @@ export const addMovieType = (id) => async (dispatch, getState) => {
             )}`
         );
 
-        dispatch({ type: GET_MOVIE_TYPE_SUCCESS, payload: data.results });
+        dispatch({
+            type: GET_MOVIE_TYPE_SUCCESS,
+            payload: data.results ? data.results : [],
+        });
     } catch (error) {
         dispatch({ type: GET_MOVIE_TYPE_ERROR, payload: error.message });
     }
@@ -45,7 +48,10 @@ export const removeMovieType = (id) => async (dispatch, getState) => {
             )}`
         );
 
-        dispatch({ type: GET_MOVIE_TYPE_SUCCESS, payload: data.results });
+        dispatch({
+            type: GET_MOVIE_TYPE_SUCCESS,
+            payload: data.results ? data.results : [],
+        });
     } catch (error) {
         dispatch({ type: GET_MOVIE_TYPE_ERROR, payload: error.message });
     }
@@ -64,7 +70,10 @@ export const addSeriesType = (id) => async (dispatch, getState) => {
 
         console.log(data);
 
-        dispatch({ type: GET_SERIES_TYPE_SUCCESS, payload: data.results });
+        dispatch({
+            type: GET_SERIES_TYPE_SUCCESS,
+            payload: data.results ? data.results : [],
+        });
     } catch (error) {
         dispatch({ type: GET_SERIES_TYPE_ERROR, payload: error.message });
     }
@@ -81,7 +90,10 @@ export const removeSeriesType = (id) => async (dispatch, getState) => {
             )}`
         );
 
-        dispatch({ type: GET_SERIES_TYPE_SUCCESS, payload: data.results });
+        dispatch({
+            type: GET_SERIES_TYPE_SUCCESS,
+            payload: data.results ? data.results : [],
+        });
     } catch (error) {
         dispatch({ type: GET_SERIES_TYPE_ERROR, payload: error.message });
     }
