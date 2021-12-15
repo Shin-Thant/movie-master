@@ -2,9 +2,16 @@ import React, { useState } from "react";
 import "./moviecard.css";
 import { AiFillStar, AiFillHeart } from "react-icons/ai";
 import { BsFillPlayFill, BsPlusLg } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
 
-export const MovieCard = ({ img, name, rating, count }) => {
+export const MovieCard = ({ id, img, name, rating, count }) => {
     const [favorite, setFavorite] = useState(false);
+
+    const navigate = useNavigate();
+
+    const goDetails = () => {
+        navigate(`/details/${id}`);
+    };
 
     return (
         <div className="card text-white rounded-lg pb-4 font-roboto">
@@ -14,12 +21,15 @@ export const MovieCard = ({ img, name, rating, count }) => {
             >
                 {img && (
                     <div className="card-hover px-4 py-2 flex flex-col justify-center items-center gap-4">
-                        <button className="bg-primary text-bold text-sm rounded-full px-3 py-2 flex items-center gap-1 shadow-primary">
+                        <button
+                            onClick={goDetails}
+                            className="text-sm bg-primary font-semibold font-sm rounded-full px-3 py-2 flex items-center gap-1 shadow-primary"
+                        >
                             <BsFillPlayFill style={{ fontSize: "22px" }} />
                             VIEW DETAILS
                         </button>
 
-                        <button className="bg-secondary text-white text-bold text-sm rounded-full px-3 py-3 flex items-center gap-2">
+                        <button className="text-sm bg-secondary text-white font-semibold font-sm rounded-full px-3 py-3 flex items-center gap-2">
                             <BsPlusLg style={{ fontSize: "15px" }} />
                             ADD TO LIST
                         </button>

@@ -1,0 +1,9 @@
+.bg-img-container {
+    width: 33%;
+    overflow: hidden;
+    border-radius: 10px;
+}
+.bg-img-container img {
+    width: 100%;
+    object-fit: cover;
+}
