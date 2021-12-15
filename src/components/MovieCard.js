@@ -7,9 +7,9 @@ export const MovieCard = ({ img, name, rating, count }) => {
     const [favorite, setFavorite] = useState(false);
 
     return (
-        <div className="card text-white rounded-lg py-4 font-roboto">
+        <div className="card text-white rounded-lg pb-4 font-roboto">
             <div
-                className="h-max w-full overflow-hidden flex justify-center card-img-container mb-3 px-4
+                className="h-max w-full overflow-hidden flex justify-center card-img-container mb-3 px-4 pt-4
             "
             >
                 {img && (

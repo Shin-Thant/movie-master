@@ -15,6 +15,7 @@ import { FaFire } from "react-icons/fa";
 import { getTrends } from "../../api/getTrends";
 import { TrendsCard } from "../../components/TrendsCard";
 import { BsChevronCompactRight, BsChevronCompactLeft } from "react-icons/bs";
+import { TrendsSkeleton } from "../../components/TrendsSkeleton";
 
 export const HomePage = () => {
     const { movieGenreIds, movies, movieStatus, movieLoading } = useSelector(
@@ -119,7 +120,7 @@ export const HomePage = () => {
                     >
                         {trends.isLoading
                             ? [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map(
-                                  (item) => <Skeleton key={item} />
+                                  (item) => <TrendsSkeleton key={item} />
                               )
                             : trends.data?.results?.map((item, index) => (
                                   <TrendsCard
