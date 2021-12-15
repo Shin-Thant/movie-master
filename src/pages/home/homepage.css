@@ -81,6 +81,10 @@
     pointer-events: none;
 }
 
+.out-of-list {
+    height: 60vh;
+}
+
 @media screen and (max-width: 700px) {
     .right-btn,
     .left-btn {

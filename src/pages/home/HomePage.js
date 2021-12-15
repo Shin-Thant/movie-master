@@ -145,7 +145,7 @@ export const HomePage = () => {
             </div>
 
             <div className="w-full sm:w-11/12 md:w-10/12 s_tablet:w-4/5 mx-auto mt-10 pb-5">
-                <div className="flex justify-around items-center mb-8 pb-6 types w-11/12 sm:w-full mx-auto">
+                <div className="flex justify-around items-center s_base:mb-5 sm:mb-7 md:mb-8 pb-6 types w-11/12 sm:w-full mx-auto">
                     <div
                         onClick={typeMovie}
                         className={
@@ -197,59 +197,75 @@ export const HomePage = () => {
                 <GenreFilter />
 
                 <div className="flex flex-wrap justify-center gap-x-3 gap-y-6 ">
-                    {movieStatus
-                        ? movieGenreIds?.length
-                            ? movieLoading
-                                ? [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map(
-                                      (item) => <Skeleton key={item} />
-                                  )
-                                : movies?.map((item, index) => (
-                                      <MovieCard
-                                          key={index}
-                                          img={item.poster_path}
-                                          name={item.title}
-                                          rating={item.vote_average}
-                                          count={item.vote_count}
-                                          overview={item.overview}
-                                      />
-                                  ))
-                            : data?.results?.length > 0 &&
-                              data.results.map((item, index) => (
-                                  <MovieCard
-                                      key={index}
-                                      img={item.poster_path}
-                                      name={item.title}
-                                      rating={item.vote_average}
-                                      count={item.vote_count}
-                                      overview={item.overview}
-                                  />
-                              ))
-                        : seriesGenreIds?.length
-                        ? seriesLoading
-                            ? [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map(
-                                  (item) => <Skeleton key={item} />
-                              )
-                            : series?.map((item, index) => (
-                                  <MovieCard
-                                      key={index}
-                                      img={item.poster_path}
-                                      name={item.name}
-                                      rating={item.vote_average}
-                                      count={item.vote_count}
-                                      overview={item.overview}
-                                  />
-                              ))
-                        : data?.results?.length > 0 &&
-                          data.results.map((item, index) => (
-                              <MovieCard
-                                  key={index}
-                                  img={item.poster_path}
-                                  name={item.name}
-                                  rating={item.vote_average}
-                                  count={item.vote_count}
-                                  overview={item.overview}
-                              />
-                          ))}
+                    {movieStatus ? (
+                        movieGenreIds?.length ? (
+                            movieLoading ? (
+                                [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map(
+                                    (item) => <Skeleton key={item} />
+                                )
+                            ) : movies.length ? (
+                                movies.map((item, index) => (
+                                    <MovieCard
+                                        key={index}
+                                        img={item.poster_path}
+                                        name={item.title}
+                                        rating={item.vote_average}
+                                        count={item.vote_count}
+                                        overview={item.overview}
+                                    />
+                                ))
+                            ) : (
+                                <div className="text-xl font-semibold out-of-list flex justify-center items-center text-white">
+                                    Movies Out of List!
+                                </div>
+                            )
+                        ) : (
+                            data?.results?.length > 0 &&
+                            data.results.map((item, index) => (
+                                <MovieCard
+                                    key={index}
+                                    img={item.poster_path}
+                                    name={item.title}
+                                    rating={item.vote_average}
+                                    count={item.vote_count}
+                                    overview={item.overview}
+                                />
+                            ))
+                        )
+                    ) : seriesGenreIds?.length ? (
+                        seriesLoading ? (
+                            [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map(
+                                (item) => <Skeleton key={item} />
+                            )
+                        ) : series.length ? (
+                            series.map((item, index) => (
+                                <MovieCard
+                                    key={index}
+                                    img={item.poster_path}
+                                    name={item.name}
+                                    rating={item.vote_average}
+                                    count={item.vote_count}
+                                    overview={item.overview}
+                                />
+                            ))
+                        ) : (
+                            <div className="text-xl font-semibold out-of-list flex justify-center items-center text-white">
+                                Tv Series Out of List!
+                            </div>
+                        )
+                    ) : (
+                        data?.results?.length > 0 &&
+                        data.results.map((item, index) => (
+                            <MovieCard
+                                key={index}
+                                img={item.poster_path}
+                                name={item.name}
+                                rating={item.vote_average}
+                                count={item.vote_count}
+                                overview={item.overview}
+                            />
+                        ))
+                    )}
                 </div>
             </div>
         </div>
