@@ -1,19 +1,18 @@
 import React, { useState } from "react";
-import "./moviecard.css";
 import { AiFillStar, AiFillHeart } from "react-icons/ai";
 import { BsFillPlayFill, BsPlusLg } from "react-icons/bs";
+import "./trendscard.css";
 
-export const MovieCard = ({ img, name, rating, count }) => {
+export const TrendsCard = ({ img, name, rating, count }) => {
     const [favorite, setFavorite] = useState(false);
-
     return (
-        <div className="card text-white rounded-lg pb-4 font-roboto">
+        <div className="trends-card text-white rounded-lg pb-4 font-roboto">
             <div
-                className="h-max w-full overflow-hidden flex justify-center card-img-container mb-3 px-4 pt-4
+                className="h-3/4 w-full overflow-hidden flex justify-center trends-card-img-container mb-3 px-4 pt-4
             "
             >
                 {img && (
-                    <div className="card-hover px-4 py-2 flex flex-col justify-center items-center gap-4">
+                    <div className="trends-card-hover px-4 py-2 flex flex-col justify-center items-center gap-4">
                         <button className="bg-primary text-bold text-sm rounded-full px-3 py-2 flex items-center gap-1 shadow-primary">
                             <BsFillPlayFill style={{ fontSize: "22px" }} />
                             VIEW DETAILS

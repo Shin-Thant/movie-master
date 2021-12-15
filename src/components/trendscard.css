@@ -1,0 +1,46 @@
+.trends-card {
+    min-width: 240px;
+    width: 240px;
+    min-height: 415px;
+    background-color: #1f1f1f;
+}
+
+.trends-card-img-container > img {
+    width: 90%;
+    object-fit: cover;
+    border-radius: 10px;
+    pointer-events: none;
+}
+
+.trends-card-img-container {
+    position: relative;
+}
+
+.trends-card-hover {
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    /* top: -100%;
+    left: 50%; */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 10px;
+    overflow: hidden;
+
+    transition: all 350ms ease;
+}
+.trends-card-hover button {
+    transform: translateY(-200px);
+    transition: all 500ms ease;
+    pointer-events: all;
+}
+.trends-card-img-container:hover .trends-card-hover {
+    opacity: 1;
+}
+.trends-card-img-container:hover .trends-card-hover button {
+    transform: translateY(0);
+}
