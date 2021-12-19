@@ -1,0 +1,39 @@
+.listCard-img-container {
+    width: 25%;
+    height: 230px;
+}
+.listCard-img-container .listCard-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.listCard-main-content {
+    width: 70%;
+}
+
+@media screen and (max-width: 640px) {
+    .listCard-img-container {
+        width: 100%;
+        height: 250px;
+    }
+    .listCard-img-container .listCard-img {
+        width: 70%;
+    }
+
+    .listCard-main-content {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .listCard-img {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .listCard-img {
+        width: 90%;
+    }
+}

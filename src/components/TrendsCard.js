@@ -1,10 +1,26 @@
 import React, { useState } from "react";
 import { AiFillStar, AiFillHeart } from "react-icons/ai";
 import { BsFillPlayFill, BsPlusLg } from "react-icons/bs";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { addToWatchList } from "../redux/Actions/WathListAction";
 import "./trendscard.css";
 
-export const TrendsCard = ({ img, name, rating, count }) => {
+export const TrendsCard = ({ mediaType, id, img, name, rating, count }) => {
     const [favorite, setFavorite] = useState(false);
+
+    const dispatch = useDispatch();
+
+    const navigate = useNavigate();
+
+    const goDetails = () => {
+        navigate(`/${mediaType}/${id}`);
+    };
+
+    const addToList = () => {
+        dispatch(addToWatchList(mediaType, id));
+    };
+
     return (
         <div className="trends-card text-white rounded-lg pb-4 font-roboto">
             <div
@@ -13,12 +29,18 @@ export const TrendsCard = ({ img, name, rating, count }) => {
             >
                 {img && (
                     <div className="trends-card-hover px-4 py-2 flex flex-col justify-center items-center gap-4">
-                        <button className="bg-primary text-bold text-sm rounded-full px-3 py-2 flex items-center gap-1 shadow-primary">
+                        <button
+                            onClick={goDetails}
+                            className="text-sm bg-primary font-bold font-sm rounded-full px-3 py-2 flex items-center gap-1 shadow-primary"
+                        >
                             <BsFillPlayFill style={{ fontSize: "22px" }} />
                             VIEW DETAILS
                         </button>
 
-                        <button className="bg-secondary text-white text-bold text-sm rounded-full px-3 py-3 flex items-center gap-2">
+                        <button
+                            onClick={addToList}
+                            className="text-sm bg-secondary text-white font-bold font-sm rounded-full px-3 py-3 flex items-center gap-2"
+                        >
                             <BsPlusLg style={{ fontSize: "15px" }} />
                             ADD TO LIST
                         </button>

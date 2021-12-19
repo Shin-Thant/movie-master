@@ -1,0 +1,230 @@
+.scroll::-webkit-scrollbar {
+    width: 10px;
+    height: 8px;
+    background-color: #b4b4b4;
+    border-radius: 50px;
+    display: none;
+}
+@media screen and (min-width: 770px) {
+    .scroll::-webkit-scrollbar {
+        display: none;
+    }
+}
+@media screen and (max-width: 770px) {
+    .scroll::-webkit-scrollbar {
+        display: block;
+    }
+}
+
+.scroll ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 50px;
+    background-color: #1f1f1f;
+}
+
+.scroll::-webkit-scrollbar-thumb {
+    /* background-color: #1F1F1F; */
+    background: linear-gradient(to left, rgb(175, 2, 255), rgb(255, 8, 0));
+    border-radius: 50px;
+    /* padding: 20px; */
+    /* outline: 1px solid #1F1F1F; */
+}
+
+.details-img {
+    width: 35%;
+    overflow: hidden;
+}
+
+.details-img img {
+    width: 68%;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+@media screen and (max-width: 1180px) {
+    .details-img img {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .details-img img {
+        width: 75%;
+    }
+}
+
+@media screen and (max-width: 950px) {
+    .details-img img {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 765px) {
+    .details-img {
+        width: 100%;
+    }
+    .details-img img {
+        width: 38%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .details-img img {
+        width: 40%;
+    }
+}
+
+@media screen and (max-width: 560px) {
+    .details-img img {
+        width: 45%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .details-img img {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .details-img img {
+        width: 60%;
+    }
+}
+@media screen and (max-width: 450px) {
+    .details-img img {
+        width: 65%;
+    }
+}
+
+.companies {
+    width: 270px;
+    min-width: 270px;
+    /* box-shadow: inset 5px 5px 12px 0px rgba(0, 0, 0, 0.6); */
+    transition: all 200ms ease;
+}
+.companies:hover {
+    box-shadow: inset 4px 4px 13px 0px rgba(0, 0, 0, 0.6);
+}
+.companies img {
+    width: 50%;
+}
+
+@media screen and (max-width: 600px) {
+    .companies {
+        width: 250px;
+        min-width: 250px;
+    }
+}
+
+.activeItem,
+.bottom-spot {
+    position: relative;
+}
+.activeItem::before,
+.bottom-spot::before {
+    content: "";
+    position: absolute;
+    bottom: -40%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    background-color: red;
+    width: 5px;
+    min-height: 5px;
+    border-radius: 50%;
+}
+
+.casts {
+    --img-width: 200px;
+
+    width: var(var(--img-width));
+    min-width: var(--img-width);
+    height: 270px;
+    overflow: hidden;
+    border-radius: 10px;
+    position: relative;
+}
+.casts img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.cast-name {
+    position: absolute;
+    bottom: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    background-image: linear-gradient(to top, black, rgb(0, 0, 0, 0));
+    transition: all 300ms ease;
+}
+
+.casts:hover .cast-name {
+    bottom: 0;
+}
+
+#castcrew-scroll {
+    scroll-behavior: smooth;
+}
+
+/* details summary {
+    list-style: none;
+    -webkit-appearance: none;
+}
+
+details[open] summary ~ * {
+    animation: sweep 0.5s ease-in-out;
+} */
+
+/* @keyframes sweep {
+    0% {
+        opacity: 0;
+        transform: translatey(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+} */
+
+.content {
+    height: 0;
+    overflow: hidden;
+    transition: all 300ms ease;
+    border-top: 0px solid rgb(190, 190, 190);
+}
+
+.activeAccordion {
+    height: auto;
+    overflow: visible;
+    padding: 2rem 1.5rem;
+    border-top-width: 1px;
+    margin-top: 1rem;
+}
+
+.plus {
+    transition: transform 300ms ease;
+}
+
+.activePlus {
+    transform: rotate(225deg);
+}
+
+@media screen and (max-width: 550px) {
+    .activeAccordion {
+        padding: 1.8rem 0.5rem;
+    }
+}
+
+.castSkeleton {
+    width: 220px;
+    min-width: 220px;
+    height: 280px;
+}
+.companySkeleton {
+    width: 250px;
+    min-width: 250px;
+    height: 200px;
+}

@@ -4,12 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getMovieGenres } from "../api/getMovieGenres";
 import { getTvGenres } from "../api/getTvGenres";
 import {
-    // addMovies,
-    // addSeries,
     addMovieType,
     addSeriesType,
-    // removeMovies,
-    // removeSeries,
     removeMovieType,
     removeSeriesType,
 } from "../redux/Actions/FilterActions";

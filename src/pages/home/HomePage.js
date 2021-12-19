@@ -11,7 +11,6 @@ import { GenreFilter } from "../../components/GenreFilter";
 import { useDispatch, useSelector } from "react-redux";
 import { changeStatus } from "../../redux/Actions/FilterActions";
 import { FiTrendingUp } from "react-icons/fi";
-import { FaFire } from "react-icons/fa";
 import { getTrends } from "../../api/getTrends";
 import { TrendsCard } from "../../components/TrendsCard";
 import { BsChevronCompactRight, BsChevronCompactLeft } from "react-icons/bs";
@@ -54,7 +53,6 @@ export const HomePage = () => {
     const trends = useQuery(["get", { media_type, time }], getTrends, {
         staleTime: 600000,
     });
-    console.log(trends);
 
     const changeMediaType = (e) => {
         setMediaType(e.target.value);
@@ -71,11 +69,13 @@ export const HomePage = () => {
         document.getElementById("cards-container").scrollLeft += 300;
     };
 
+    const { list } = useSelector((state) => state.watchList);
+
     return (
-        <div className="w-full mx-auto bg-black font-roboto">
+        <div className="w-full mx-auto bg-black font-roboto pb-32">
             <HomePageIntro />
 
-            <div className="w-full mt-10">
+            <div className="w-full mt-20">
                 <div className="s_base:w-11/12 md:w-10/12 s_tablet:w-4/5 mx-auto flex items-center justify-center mb-5 pb-6 types">
                     <div className="activeRole flex items-center justify-center w-1/2 gap-2 text-white">
                         <FiTrendingUp className="text-lg sm:text-xl md:text-2xl font-bold " />
@@ -125,6 +125,8 @@ export const HomePage = () => {
                             : trends.data?.results?.map((item, index) => (
                                   <TrendsCard
                                       key={index}
+                                      mediaType={item.name ? "tv" : "movie"}
+                                      id={item.id}
                                       img={item.poster_path}
                                       name={item.name ? item.name : item.title}
                                       rating={item.vote_average}
@@ -144,7 +146,7 @@ export const HomePage = () => {
                 </div>
             </div>
 
-            <div className="w-full sm:w-11/12 md:w-10/12 s_tablet:w-4/5 mx-auto mt-10 pb-5">
+            <div className="w-full sm:w-11/12 md:w-10/12 s_tablet:w-4/5 mx-auto mt-20 pb-5">
                 <div className="flex justify-around items-center s_base:mb-5 sm:mb-7 md:mb-8 pb-6 types w-11/12 sm:w-full mx-auto">
                     <div
                         onClick={typeMovie}
@@ -207,6 +209,8 @@ export const HomePage = () => {
                                 movies.map((item, index) => (
                                     <MovieCard
                                         key={index}
+                                        mediaType={item.name ? "tv" : "movie"}
+                                        id={item.id}
                                         img={item.poster_path}
                                         name={item.title}
                                         rating={item.vote_average}
@@ -219,11 +223,16 @@ export const HomePage = () => {
                                     Movies Out of List!
                                 </div>
                             )
+                        ) : isLoading ? (
+                            [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map(
+                                (item) => <Skeleton key={item} />
+                            )
                         ) : (
-                            data?.results?.length > 0 &&
                             data.results.map((item, index) => (
                                 <MovieCard
                                     key={index}
+                                    mediaType={item.name ? "tv" : "movie"}
+                                    id={item.id}
                                     img={item.poster_path}
                                     name={item.title}
                                     rating={item.vote_average}
@@ -241,6 +250,8 @@ export const HomePage = () => {
                             series.map((item, index) => (
                                 <MovieCard
                                     key={index}
+                                    mediaType={item.name ? "tv" : "movie"}
+                                    id={item.id}
                                     img={item.poster_path}
                                     name={item.name}
                                     rating={item.vote_average}
@@ -253,11 +264,16 @@ export const HomePage = () => {
                                 Tv Series Out of List!
                             </div>
                         )
+                    ) : isLoading ? (
+                        [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((item) => (
+                            <Skeleton key={item} />
+                        ))
                     ) : (
-                        data?.results?.length > 0 &&
-                        data.results.map((item, index) => (
+                        data?.results?.map((item, index) => (
                             <MovieCard
                                 key={index}
+                                mediaType={item.name ? "tv" : "movie"}
+                                id={item.id}
                                 img={item.poster_path}
                                 name={item.name}
                                 rating={item.vote_average}
@@ -271,3 +287,5 @@ export const HomePage = () => {
         </div>
     );
 };
+
+// data?.results?.length > 0 &&
