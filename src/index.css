@@ -11,3 +11,29 @@
 .inactiveType {
     @apply flex items-center justify-center w-max gap-2 cursor-pointer text-gray-500;
 }
+
+.activeWatchList {
+    @apply flex-1 flex items-center justify-center w-max gap-2 cursor-pointer text-white;
+}
+
+.inactiveWatchList {
+    @apply flex-1 flex items-center justify-center w-max gap-2 cursor-pointer text-gray-500;
+}
+
+.activeItem {
+    @apply flex-1 flex items-center justify-center w-max gap-2 text-white pb-1;
+}
+
+.inactiveItem {
+    @apply flex-1 flex items-center justify-center w-max gap-2 text-gray-500 pb-1;
+}
+
+.activeArrow {
+    @apply hidden md:flex justify-center items-center;
+    /* @apply opacity-0 pointer-events-none md:opacity-100 md:pointer-events-auto; */
+}
+
+.inactiveArrow {
+    /* @apply opacity-0 pointer-events-none; */
+    @apply hidden;
+}

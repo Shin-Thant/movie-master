@@ -1,16 +1,24 @@
 import React, { useState } from "react";
 import { AiFillStar, AiFillHeart } from "react-icons/ai";
 import { BsFillPlayFill, BsPlusLg } from "react-icons/bs";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { addToWatchList } from "../redux/Actions/WathListAction";
 import "./trendscard.css";
 
-export const TrendsCard = ({ id, img, name, rating, count }) => {
+export const TrendsCard = ({ mediaType, id, img, name, rating, count }) => {
     const [favorite, setFavorite] = useState(false);
+
+    const dispatch = useDispatch();
 
     const navigate = useNavigate();
 
     const goDetails = () => {
-        navigate(`/details/${id}`);
+        navigate(`/${mediaType}/${id}`);
+    };
+
+    const addToList = () => {
+        dispatch(addToWatchList(mediaType, id));
     };
 
     return (
@@ -29,7 +37,10 @@ export const TrendsCard = ({ id, img, name, rating, count }) => {
                             VIEW DETAILS
                         </button>
 
-                        <button className="text-sm bg-secondary text-white font-bold font-sm rounded-full px-3 py-3 flex items-center gap-2">
+                        <button
+                            onClick={addToList}
+                            className="text-sm bg-secondary text-white font-bold font-sm rounded-full px-3 py-3 flex items-center gap-2"
+                        >
                             <BsPlusLg style={{ fontSize: "15px" }} />
                             ADD TO LIST
                         </button>

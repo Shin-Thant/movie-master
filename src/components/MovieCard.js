@@ -3,14 +3,24 @@ import "./moviecard.css";
 import { AiFillStar, AiFillHeart } from "react-icons/ai";
 import { BsFillPlayFill, BsPlusLg } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addToWatchList } from "../redux/Actions/WathListAction";
 
-export const MovieCard = ({ id, img, name, rating, count }) => {
+export const MovieCard = ({ mediaType, id, img, name, rating, count }) => {
     const [favorite, setFavorite] = useState(false);
+
+    const dispatch = useDispatch();
 
     const navigate = useNavigate();
 
     const goDetails = () => {
-        navigate(`/details/${id}`);
+        navigate(`/${mediaType}/${id}`);
+    };
+
+    const addToList = () => {
+        // console.log(mediaType, name, id);
+        dispatch(addToWatchList(mediaType, id));
+        // navigate("/watchList");
     };
 
     return (
@@ -29,7 +39,10 @@ export const MovieCard = ({ id, img, name, rating, count }) => {
                             VIEW DETAILS
                         </button>
 
-                        <button className="text-sm bg-secondary text-white font-semibold font-sm rounded-full px-3 py-3 flex items-center gap-2">
+                        <button
+                            onClick={addToList}
+                            className="text-sm bg-secondary text-white font-semibold font-sm rounded-full px-3 py-3 flex items-center gap-2"
+                        >
                             <BsPlusLg style={{ fontSize: "15px" }} />
                             ADD TO LIST
                         </button>

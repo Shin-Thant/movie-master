@@ -41,6 +41,16 @@
 #cards-container::-webkit-scrollbar {
     display: none;
 }
+@media screen and (min-width: 770px) {
+    #cards-container::-webkit-scrollbar {
+        display: none;
+    }
+}
+@media screen and (max-width: 770px) {
+    #cards-container::-webkit-scrollbar {
+        display: block;
+    }
+}
 
 .left-btn,
 .right-btn {

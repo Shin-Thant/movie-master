@@ -1,0 +1,18 @@
+.watchList-filter {
+    border-bottom: 1px solid #313131;
+}
+
+.activeWatchList {
+    position: relative;
+}
+.activeWatchList::before {
+    content: "";
+    position: absolute;
+    bottom: -40%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    background-color: red;
+    width: 5px;
+    min-height: 5px;
+    border-radius: 50%;
+}
