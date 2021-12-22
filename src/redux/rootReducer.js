@@ -3,6 +3,7 @@ import {
     PrimaryMovieReducer,
     PrimarySeriesReducer,
 } from "./Reducers/FilterReducers";
+import { NavbarReducer } from "./Reducers/NavbarReducer";
 import { SearchReducer } from "./Reducers/SearchReducer";
 import {
     MovieListReducer,
@@ -17,4 +18,5 @@ export const rootReducer = combineReducers({
     movieList: MovieListReducer,
     tvList: tvListReducer,
     search: SearchReducer,
+    navbar: NavbarReducer,
 });

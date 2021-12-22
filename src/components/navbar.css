@@ -1,0 +1,46 @@
+.top-nav {
+    backdrop-filter: blur(0.5rem);
+    padding: 1rem 0.8rem;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.activeTop {
+    position: relative;
+}
+.activeTop::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -0.6rem;
+    transform: translate(50%, 0);
+    width: 5.5px;
+    height: 5.5px;
+    background-color: #ff0000;
+    border-radius: 50%;
+}
+
+.bottom-nav {
+    box-shadow: 0 -3px 14px rgba(0, 0, 0, 0.3);
+}
+
+.menu {
+    gap: 3.3rem;
+}
+
+@media screen and (max-width: 640px) {
+    .menu {
+        gap: 5rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .menu {
+        gap: 4rem;
+    }
+}
+
+@media screen and (max-width: 460px) {
+    .menu {
+        gap: 3rem;
+    }
+}

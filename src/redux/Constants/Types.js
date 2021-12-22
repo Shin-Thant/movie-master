@@ -37,3 +37,5 @@ export const GET_SEARCH_SUCCESS = "GET_SEARCH_SUCCESS";
 export const GET_SEARCH_ERROR = "GET_SEARCH_ERROR";
 
 export const REMOVE_SEARCH = "REMOVE_SEARCH";
+
+export const ADD_NEW_LINK = "ADD_NEW_LINK";

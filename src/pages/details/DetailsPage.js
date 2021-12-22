@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import { getDetails } from "../../api/getDetails";
@@ -11,6 +11,7 @@ import { MovieCard } from "../../components/MovieCard";
 import { Review } from "../../components/Review";
 import { TrendsSkeleton } from "../../components/TrendsSkeleton";
 import { TrendsCard } from "../../components/TrendsCard";
+import { addNavLink } from "../../redux/Actions/NavbarAction";
 
 export const Divider = () => {
     return (
@@ -58,8 +59,10 @@ export const DetailsPage = () => {
         document.getElementById("cards-container").scrollLeft += 300;
     };
 
+    console.log(data?.episode_run_time, data?.id);
+
     return (
-        <div className="text-white font-roboto bg-black min-h-screen w-full pt-12 pb-32">
+        <div className="text-white font-roboto bg-black min-h-screen w-full pt-28 pb-32">
             <div className="flex flex-col justify-bewteen items-start w-full sm:w-11/12 md:flex-row md:items-center mx-auto gap-8 md:gap-0 lg:gap-6 xl:gap-5 px-5 sm:-0">
                 <div className="details-img flex justify-center">
                     {isLoading ? (
@@ -76,7 +79,10 @@ export const DetailsPage = () => {
                     <div className="flex gap-3 flex-wrap mb-4">
                         {isLoading
                             ? [0, 1, 2, 3].map((item) => (
-                                  <div className="w-24 h-6 bg-gray-300 animate-pulse rounded-full"></div>
+                                  <div
+                                      key={item}
+                                      className="w-24 h-6 bg-gray-300 animate-pulse rounded-full"
+                                  ></div>
                               ))
                             : data?.genres.map((item) => (
                                   <div
@@ -103,16 +109,22 @@ export const DetailsPage = () => {
 
                     {data?.number_of_seasons && data?.number_of_episodes && (
                         <div className="flex items-center gap-3 mb-4">
-                            <h2 className="font-semibold text-lg">
-                                Duration -{" "}
-                                <span className="text-primary">
-                                    {data?.episode_run_time > 60
-                                        ? `${Math.floor(
-                                              data.episode_run_time / 60
-                                          )}hr ${data?.episode_run_time % 60}m`
-                                        : `${data.episode_run_time}m`}
-                                </span>
-                            </h2>
+                            {data?.episode_run_time.length ? (
+                                <h2 className="font-semibold text-lg">
+                                    Duration -{" "}
+                                    <span className="text-primary">
+                                        {data?.episode_run_time > 60
+                                            ? `${Math.floor(
+                                                  data.episode_run_time / 60
+                                              )}hr ${
+                                                  data?.episode_run_time % 60
+                                              }m`
+                                            : `${data.episode_run_time}m`}
+                                    </span>
+                                </h2>
+                            ) : (
+                                ""
+                            )}
                             <h2 className="font-semibold text-lg">
                                 Seasons{" "}
                                 <span className="text-primary font-bold">
@@ -189,7 +201,7 @@ export const DetailsPage = () => {
                                 href={`https://www.youtube.com/watch?v=${
                                     data?.videos?.results?.filter(
                                         (item) => item.type === "Trailer"
-                                    )[0].key
+                                    )[0]?.key
                                 }`}
                                 target="_blank"
                                 className="bg-primary uppercase px-6 text-sm font-semibold py-2 rounded-full shadow-primary"
@@ -265,31 +277,30 @@ export const DetailsPage = () => {
                                           className="animate-pulse bg-gray-300 rounded-xl castSkeleton"
                                       ></div>
                                   ))
-                                : data?.credits?.cast?.map(
-                                      (item) =>
-                                          item.profile_path && (
-                                              <div
-                                                  className="casts"
-                                                  key={item.id}
-                                              >
-                                                  <img
-                                                      src={`https://image.tmdb.org/t/p/w500${item.profile_path}`}
-                                                      alt=""
-                                                  />
-                                                  <div className="flex flex-col justify-center items-center gap-5 cast-name text-white font-bold text-2xl">
-                                                      <span className="text-center">
-                                                          {item.character}
-                                                      </span>
-                                                      <span className="text-base text-center text-gray-300">
-                                                          by{" "}
-                                                          {item.original_name}
-                                                      </span>
-                                                  </div>
+                                : data?.credits?.cast?.map((item) =>
+                                      item.profile_path ? (
+                                          <div className="casts" key={item.id}>
+                                              <img
+                                                  src={`https://image.tmdb.org/t/p/w500${item.profile_path}`}
+                                                  alt=""
+                                              />
+                                              <div className="flex flex-col justify-center items-center gap-5 cast-name text-white font-bold text-2xl">
+                                                  <span className="text-center">
+                                                      {item.character}
+                                                  </span>
+                                                  <span className="text-base text-center text-gray-300">
+                                                      by {item.original_name}
+                                                  </span>
                                               </div>
-                                          )
+                                          </div>
+                                      ) : (
+                                          <div className="casts" key={item.id}>
+                                              <h2>{item.character}</h2>
+                                          </div>
+                                      )
                                   )}
                         </div>
-                        <div className="hidden md:flex right-btn text-4xl lg:text-5xl justify-center items-center text-gray-400 hover:text-gray-200">
+                        <div className="hidden md:flex right-btn text-4xl lg:text-5xl text-gray-400 hover:text-gray-200">
                             <button className="w-max" onClick={right}>
                                 <BsChevronCompactRight />
                             </button>
@@ -410,7 +421,7 @@ export const DetailsPage = () => {
             </div>
 
             {/* Reviews */}
-            <div className="w-full sm:w-4/5 mx-auto px-5 mt-20">
+            <div className="w-full md:w-4/5 mx-auto px-5 mt-20">
                 <h2 className="text-xl font-semibold mb-8 bottom-spot text-center">
                     Reviews
                 </h2>
