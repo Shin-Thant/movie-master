@@ -169,26 +169,6 @@
     scroll-behavior: smooth;
 }
 
-/* details summary {
-    list-style: none;
-    -webkit-appearance: none;
-}
-
-details[open] summary ~ * {
-    animation: sweep 0.5s ease-in-out;
-} */
-
-/* @keyframes sweep {
-    0% {
-        opacity: 0;
-        transform: translatey(-10px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateX(0);
-    }
-} */
-
 .content {
     height: 0;
     overflow: hidden;
@@ -202,6 +182,18 @@ details[open] summary ~ * {
     padding: 2rem 1.5rem;
     border-top-width: 1px;
     margin-top: 1rem;
+    animation: sweep 0.5s ease-in-out;
+}
+
+@keyframes sweep {
+    0% {
+        opacity: 0;
+        transform: translatey(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 .plus {

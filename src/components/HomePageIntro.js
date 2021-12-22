@@ -30,10 +30,10 @@ export const HomePageIntro = () => {
     // *Convert minutes into hours and minutes
 
     return (
-        <div className="home-intro mx-auto text-white ">
+        <div className="home-intro mx-auto text-white">
             {data && (
-                <div className="w-full s_mobile:10/12 sm:w-9/12 md:w-3/5 lg:w-7/12 h-full flex flex-col justify-start s_base:justify-center s_base:px-6 s_mobile:px-10 sm:px-16 s_tablet:px-20 gap-5">
-                    <div className="s_base:text-base sm:text-lg">
+                <div className="home-intro-content h-full flex flex-col justify-start s_base:justify-center s_base:px-6 s_mobile:px-10 sm:px-16 s_tablet:px-20 gap-5">
+                    <div className="s_base:text-base sm:text-lg pt-16 sm:pt-16 lg:pt-10">
                         Duration - {Math.floor(data.runtime / 60)}hr{" "}
                         {data.runtime % 60}m
                     </div>

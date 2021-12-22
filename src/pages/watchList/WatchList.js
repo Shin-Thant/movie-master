@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { WatchListCard } from "../../components/WatchListCard";
 import { WatchListSkeleton } from "../../components/WatchListSkeleton";
 import empty from "../../img/empty-text.svg";
@@ -7,6 +7,7 @@ import "./watchList.css";
 import { BsCollectionPlayFill } from "react-icons/bs";
 import { BiMoviePlay } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
+import { addNavLink } from "../../redux/Actions/NavbarAction";
 
 export const WatchList = () => {
     const { loading, list } = useSelector((state) => state.watchList);
@@ -14,6 +15,12 @@ export const WatchList = () => {
     const { movies } = useSelector((state) => state.movieList);
 
     const { tv } = useSelector((state) => state.tvList);
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(addNavLink("watchlist"));
+    }, []);
 
     const [filterType, setFilterType] = useState({
         status: false,
@@ -39,7 +46,7 @@ export const WatchList = () => {
     };
 
     return (
-        <div className="min-h-screen w-full bg-black font-roboto text-white pt-12 pb-32">
+        <div className="min-h-screen w-full bg-black font-roboto text-white pt-24 pb-32">
             <div className="w-11/12 mx-auto flex items-center justify-evely mb-12 pb-7 watchList-filter">
                 <div
                     className={

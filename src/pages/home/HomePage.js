@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { HomePageIntro } from "../../components/HomePageIntro";
 import { BiMoviePlay } from "react-icons/bi";
 import { BsCollectionPlayFill } from "react-icons/bs";
@@ -15,8 +15,11 @@ import { getTrends } from "../../api/getTrends";
 import { TrendsCard } from "../../components/TrendsCard";
 import { BsChevronCompactRight, BsChevronCompactLeft } from "react-icons/bs";
 import { TrendsSkeleton } from "../../components/TrendsSkeleton";
+import { addNavLink } from "../../redux/Actions/NavbarAction";
 
 export const HomePage = () => {
+    const { activeLink } = useSelector((state) => state.navbar);
+
     const { movieGenreIds, movies, movieStatus, movieLoading } = useSelector(
         (state) => state.primaryMovieFilter
     );
@@ -26,6 +29,10 @@ export const HomePage = () => {
     );
 
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(addNavLink("explore"));
+    }, []);
 
     const [active, setActive] = useState("movie");
 
@@ -68,8 +75,6 @@ export const HomePage = () => {
     const right = () => {
         document.getElementById("cards-container").scrollLeft += 300;
     };
-
-    const { list } = useSelector((state) => state.watchList);
 
     return (
         <div className="w-full mx-auto bg-black font-roboto pb-32">
@@ -115,7 +120,7 @@ export const HomePage = () => {
                         </button>
                     </div>
                     <div
-                        className="w-full flex items-start overflow-auto gap-x-4 px-8 sm:px-19 md:px-20 lg:px-24 py-4"
+                        className="w-full flex items-start overflow-auto gap-x-4 px-16 sm:px-22 lg:px-24 py-4"
                         id="cards-container"
                     >
                         {trends.isLoading
@@ -228,7 +233,7 @@ export const HomePage = () => {
                                 (item) => <Skeleton key={item} />
                             )
                         ) : (
-                            data.results.map((item, index) => (
+                            data?.results?.map((item, index) => (
                                 <MovieCard
                                     key={index}
                                     mediaType={item.name ? "tv" : "movie"}

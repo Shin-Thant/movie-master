@@ -30,10 +30,8 @@
 
 .activeArrow {
     @apply hidden md:flex justify-center items-center;
-    /* @apply opacity-0 pointer-events-none md:opacity-100 md:pointer-events-auto; */
 }
 
 .inactiveArrow {
-    /* @apply opacity-0 pointer-events-none; */
     @apply hidden;
 }

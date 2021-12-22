@@ -1,0 +1,17 @@
+.up {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    backdrop-filter: blur(1rem);
+    transition: all 250ms ease;
+}
+.up:hover {
+    background-color: #ffffff;
+    color: #1f1f1f;
+}
+
+@media screen and (max-width: 640px) {
+    .up {
+        bottom: 5rem;
+    }
+}

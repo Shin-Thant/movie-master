@@ -3,6 +3,7 @@ import { FiSearch } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
 import { MovieCard } from "../../components/MovieCard";
 import { Skeleton } from "../../components/Skeleton";
+import { addNavLink } from "../../redux/Actions/NavbarAction";
 import {
     getSearchData,
     removeSearchData,
@@ -12,6 +13,10 @@ export const SearchPage = () => {
     const [name, setName] = useState("");
 
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(addNavLink("search"));
+    }, []);
 
     const { loading, data, error } = useSelector((state) => state.search);
 
@@ -27,14 +32,14 @@ export const SearchPage = () => {
     };
 
     return (
-        <div className="font-roboto bg-black text-white w-full pt-12 pb-32">
+        <div className="font-roboto bg-black text-white w-full pt-24 pb-32">
             <div className="w-4/5 mx-auto">
                 <div className="w-full bg-secondary rounded-full flex items-center px-5 py-2 gap-4 mb-16">
                     <FiSearch className="text-xl text-gray-400" />
                     <input
                         value={name}
                         onChange={search}
-                        className="shadow-lg border-0 outline-none bg-transparent w-full"
+                        className=" border-0 outline-none bg-transparent w-full"
                         type="text"
                         placeholder="Search anything you like..."
                     />
