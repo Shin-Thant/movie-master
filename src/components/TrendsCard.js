@@ -1,17 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AiFillStar, AiFillHeart } from "react-icons/ai";
 import { BsFillPlayFill, BsPlusLg } from "react-icons/bs";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { addToWatchList } from "../redux/Actions/WathListAction";
+import {
+    addToWatchList,
+    removeFromWatchList,
+} from "../redux/Actions/WathListAction";
 import "./trendscard.css";
 
 export const TrendsCard = ({ mediaType, id, img, name, rating, count }) => {
     const [favorite, setFavorite] = useState(false);
 
+    const { list } = useSelector((state) => state.watchList);
+
     const dispatch = useDispatch();
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        list.find((item) => item.id === id)
+            ? setFavorite(true)
+            : setFavorite(false);
+    }, [list]);
 
     const goDetails = () => {
         navigate(`/${mediaType}/${id}`);
@@ -19,6 +30,14 @@ export const TrendsCard = ({ mediaType, id, img, name, rating, count }) => {
 
     const addToList = () => {
         dispatch(addToWatchList(mediaType, id));
+    };
+
+    const favorited = () => {
+        favorite
+            ? dispatch(removeFromWatchList(id))
+            : dispatch(addToWatchList(mediaType, id));
+
+        favorite ? setFavorite(false) : setFavorite(true);
     };
 
     return (
@@ -69,7 +88,7 @@ export const TrendsCard = ({ mediaType, id, img, name, rating, count }) => {
                                 ? "text-primary cursor-pointer p-1"
                                 : "text-gray-500 cursor-pointer p-1"
                         }
-                        onClick={() => setFavorite(!favorite)}
+                        onClick={favorited}
                     >
                         <AiFillHeart style={{ fontSize: "20px" }} />
                     </div>

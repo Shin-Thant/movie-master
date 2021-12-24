@@ -312,7 +312,7 @@ export const DetailsPage = () => {
                     <div className="w-full mx-auto relative">
                         <div
                             className={`left-btn text-4xl lg:text-5xl text-gray-400 hover:text-gray-200 ${
-                                data?.production_companies?.length >= 4
+                                data?.production_companies?.length >= 5
                                     ? "activeArrow"
                                     : "inactiveArrow"
                             }
@@ -360,7 +360,7 @@ export const DetailsPage = () => {
                         </div>
                         <div
                             className={`right-btn text-4xl lg:text-5xl text-gray-400 hover:text-gray-200 ${
-                                data?.production_companies?.length >= 4
+                                data?.production_companies?.length >= 5
                                     ? "activeArrow"
                                     : "inactiveArrow"
                             }`}
@@ -428,7 +428,14 @@ export const DetailsPage = () => {
 
                 <Divider />
 
-                {data?.reviews?.results?.length ? (
+                {isLoading ? (
+                    [1, 2, 3, 4, 5].map((item) => (
+                        <div
+                            key={item}
+                            className="animate-pulse rounded-lg w-full h-12 bg-gray-300 mb-5 text-white"
+                        ></div>
+                    ))
+                ) : data?.reviews?.results?.length ? (
                     data?.reviews?.results?.map((item) => (
                         <Review
                             key={item.id}
