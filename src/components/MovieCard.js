@@ -1,26 +1,43 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./moviecard.css";
 import { AiFillStar, AiFillHeart } from "react-icons/ai";
 import { BsFillPlayFill, BsPlusLg } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { addToWatchList } from "../redux/Actions/WathListAction";
+import { useDispatch, useSelector } from "react-redux";
+import {
+    addToWatchList,
+    removeFromWatchList,
+} from "../redux/Actions/WathListAction";
 
 export const MovieCard = ({ mediaType, id, img, name, rating, count }) => {
     const [favorite, setFavorite] = useState(false);
 
+    const { list } = useSelector((state) => state.watchList);
+
     const dispatch = useDispatch();
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        list.find((item) => item.id === id)
+            ? setFavorite(true)
+            : setFavorite(false);
+    }, [list]);
 
     const goDetails = () => {
         navigate(`/${mediaType}/${id}`);
     };
 
     const addToList = () => {
-        // console.log(mediaType, name, id);
         dispatch(addToWatchList(mediaType, id));
-        // navigate("/watchList");
+    };
+
+    const favorited = () => {
+        favorite
+            ? dispatch(removeFromWatchList(id))
+            : dispatch(addToWatchList(mediaType, id));
+
+        favorite ? setFavorite(false) : setFavorite(true);
     };
 
     return (
@@ -60,9 +77,9 @@ export const MovieCard = ({ mediaType, id, img, name, rating, count }) => {
                 <h2 className="font-bold text-lg mb-1">{name}</h2>
                 <div className="flex items-center justify-between">
                     <div className="flex flex-col s_base:flex-row sm:flex-row md:flex-col lg:flex-row lgitems-center s_base:gap-3 sm:gap-2 md:gap-0 lg:gap-3">
-                        <h4 className="flex items-center text-yellow-500 gap-1 font-bold">
+                        <button className="flex items-center text-yellow-500 gap-1 font-bold">
                             <AiFillStar style={{ fontSize: "18px" }} /> {rating}
-                        </h4>
+                        </button>
                         <h4>({count} ratings)</h4>
                     </div>
                     <div
@@ -71,7 +88,7 @@ export const MovieCard = ({ mediaType, id, img, name, rating, count }) => {
                                 ? "text-primary cursor-pointer p-1"
                                 : "text-gray-500 cursor-pointer p-1"
                         }
-                        onClick={() => setFavorite(!favorite)}
+                        onClick={favorited}
                     >
                         <AiFillHeart style={{ fontSize: "20px" }} />
                     </div>

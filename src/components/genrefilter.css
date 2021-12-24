@@ -7,19 +7,19 @@
 
 /* Track */
 .filter-container::-webkit-scrollbar-track {
-    background: #313131;
+    background: #1a1a1a;
     border-radius: 50px;
 }
 
 /* Handle */
 .filter-container::-webkit-scrollbar-thumb {
-    background: #888;
+    background: rgb(105, 105, 105);
     border-radius: 50px;
 }
 
 /* Handle on hover */
 .filter-container::-webkit-scrollbar-thumb:hover {
-    background: #555;
+    background: rgb(145, 145, 145);
 }
 
 @media screen and (max-width: 580px) {

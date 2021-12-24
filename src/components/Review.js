@@ -5,9 +5,9 @@ export const Review = ({ author, content }) => {
     const [active, setActive] = useState(false);
 
     return (
-        <div className="accordion bg-secondary p-4 sm:p-5 rounded-lg mb-5">
+        <div className="accordion bg-secondary px-4 py-2 sm:py-3 sm:px-3 rounded-lg mb-5 w-full">
             <div>
-                <div className="autor text:lg md:text-xl font-bold flex justify-between items-center ">
+                <div className="autor text-base md:text-lg font-bold flex justify-between items-center ">
                     <span>{author}</span>
                     <span
                         className="cursor-pointer p-1"

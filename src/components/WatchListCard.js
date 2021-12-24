@@ -24,7 +24,6 @@ export const WatchListCard = ({
     const removeWatchListItem = () => {
         dispatch(removeFromWatchList(id));
     };
-    console.log(mediaType);
 
     const goDetails = () => {
         navigate(`/${mediaType}/${id}`);
