@@ -30,14 +30,14 @@ export const HomePageIntro = () => {
     // *Convert minutes into hours and minutes
 
     return (
-        <div className="home-intro mx-auto text-white">
+        <div className="home-intro mx-auto text-white w-full py-20 sm:py-0 flex flex-col justify-start s_base:justify-center relative z-10 relative">
             {data && (
-                <div className="home-intro-content h-full flex flex-col justify-start s_base:justify-center s_base:px-6 s_mobile:px-10 sm:px-16 s_tablet:px-20 gap-5">
-                    <div className="s_base:text-base sm:text-lg pt-16 sm:pt-16 lg:pt-10">
+                <div className="home-intro-content h-max mt-10 s_base:px-5 s_mobile:px-10 sm:px-16 s_tablet:px-20">
+                    <div className="s_base:text-base sm:text-lg mb-2 md:mb-3">
                         Duration - {Math.floor(data.runtime / 60)}hr{" "}
                         {data.runtime % 60}m
                     </div>
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-3 mb-2 md:mb-3">
                         <h2 className="flex items-center font-bold gap-1 text-lg">
                             <AiFillStar style={{ color: "gold" }} />{" "}
                             {data.vote_average}
@@ -47,8 +47,10 @@ export const HomePageIntro = () => {
                             {data.tagline}
                         </h2>
                     </div>
-                    <h1 className="font-extrabold text-4xl ">{data.title}</h1>
-                    <h4 className="s_base:text-base sm:text-lg">
+                    <h1 className="font-extrabold text-4xl mb-3 sm:mb-4">
+                        {data.title}
+                    </h1>
+                    <h4 className="s_base:text-base sm:text-lg mb-4 sm:mb-5">
                         {data.overview}
                     </h4>
                     <div className="w-full flex flex-wrap s_base:items-start flex-col s_base:flex-row s_mobile:flex-row sm:flex-col md:flex-row items-center gap-6">

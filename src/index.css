@@ -28,10 +28,18 @@
     @apply flex-1 flex items-center justify-center w-max gap-2 text-gray-500 pb-1;
 }
 
+.activeSearch {
+    @apply flex-1 flex flex-col sm:flex-row items-center justify-center w-max sm:gap-2 text-white pb-1;
+}
+
+.inactiveSearch {
+    @apply flex-1 flex flex-col sm:flex-row items-center justify-center w-max sm:gap-2 text-gray-500 pb-1;
+}
+
 .activeArrow {
     @apply hidden md:flex justify-center items-center;
 }
 
 .inactiveArrow {
-    @apply hidden;
+    @apply flex items-center lg:hidden;
 }

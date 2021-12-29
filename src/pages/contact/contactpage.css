@@ -44,3 +44,17 @@ textarea {
         height: 80vh;
     }
 }
+
+@media screen and (max-width: 500px) {
+    .contact-img-container {
+        height: max-content;
+    }
+}
+
+.mail-submit {
+    transition: all 200ms ease;
+}
+.mail-submit:focus,
+.mail-submit:hover {
+    background-color: rgb(194, 3, 3);
+}

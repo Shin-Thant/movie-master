@@ -8,15 +8,26 @@
     position: relative;
 }
 .activeTop::before {
+    --bottom: -0.6rem;
+
     content: "";
     position: absolute;
     left: 50%;
-    bottom: -0.6rem;
+    bottom: -1rem;
     transform: translate(50%, 0);
     width: 5.5px;
     height: 5.5px;
     background-color: #ff0000;
     border-radius: 50%;
+    opacity: 0;
+    animation: slideUp 500ms ease forwards;
+}
+
+@keyframes slideUp {
+    to {
+        bottom: var(--bottom);
+        opacity: 1;
+    }
 }
 
 .bottom-nav {
@@ -43,4 +54,12 @@
     .menu {
         gap: 3rem;
     }
+}
+
+.signin {
+    color: rgb(51, 51, 51);
+    transition: all 200ms ease;
+}
+.signin:hover {
+    color: white;
 }

@@ -22,7 +22,7 @@ const ContactPage = () => {
         phone: yup
             .number()
             .required("Please fill your phone number")
-            .min(5, "Phone number should be at least 5 number"),
+            .min(8, "Phone number should be at least 5 number"),
         suggestion: yup.string().required("Suggestion is required"),
     });
 
@@ -36,11 +36,12 @@ const ContactPage = () => {
         validationSchema: formSchema,
         onSubmit: async (values, { setErrors, setSubmitting, resetForm }) => {
             const response = await emailjs.send(
-                "service_1ovtrzs",
-                "template_ax5q9ti",
+                "service_d2l7zps",
+                "template_171zlig",
                 values,
-                "user_T1mEM3StbjMCT4Q1rXIje"
+                "user_7NS6yEEb6IacyPRSguBEK"
             );
+
             setSubmitting(false);
             resetForm();
         },
@@ -51,7 +52,7 @@ const ContactPage = () => {
     return (
         <div className="font-roboto meassage-wrapper bg-black min-h-screen text-white flex justify-center items-center">
             <div className="w-11/12 sm:w-5/6 message flex justify-between items-center s_base:flex-col s_tablet:flex-row bg-secondary p-5 md:px-10 md:py-10 shadow-xl my-32 rounded-xl mx-auto">
-                <div className="contact-img-container flex flex-col justify-center items-center rounded-3xl">
+                <div className="contact-img-container flex flex-col justify-center items-center rounded-3xl h-max bg-red-200">
                     {/* <h1 className='text-3xl pb-5 tracking-widest font-bold'>Get In Touch</h1> */}
                     <img
                         src="https://images.unsplash.com/photo-1586769852044-692d6e3703f0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8Y29udGFjdCUyMHVzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
@@ -124,7 +125,7 @@ const ContactPage = () => {
                                     className="w-full"
                                     name=""
                                     id=""
-                                    cols="35"
+                                    cols="40"
                                     placeholder="Send message to us"
                                     {...getFieldProps("suggestion")}
                                 ></textarea>
@@ -134,7 +135,7 @@ const ContactPage = () => {
                             </div>
                             <button
                                 type="submit"
-                                className="uppercase text-base font-bold bg-primary px-10 py-2 rounded-full shadow-lg w-full"
+                                className="uppercase text-base font-bold bg-primary px-10 py-2 rounded-full shadow-lg w-full mail-submit"
                             >
                                 Send
                             </button>

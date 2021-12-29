@@ -1,16 +1,11 @@
 .home-intro {
-    /* width: 100%; */
     height: 100vh;
-    /* height: max-content; */
     background-image: url("../img/spider-man.jpg");
     background-size: cover;
-    position: relative;
-    /* z-index: -1; */
 }
 .home-intro::before {
     content: "";
     position: absolute;
-    bottom: 0;
     bottom: 0;
     left: 0;
     width: 100%;
@@ -22,20 +17,37 @@
         black
     );
     pointer-events: none;
+    z-index: -1;
 }
-.home-intro-content {
+.home-intro::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 63%;
+    height: 100%;
     background: linear-gradient(
         to right,
         black,
         rgba(0, 0, 0, 0.7),
         rgba(0, 0, 0, 0)
     );
-    z-index: 100;
+    z-index: -1;
+}
+
+.home-intro-content {
+    width: 63%;
 }
 
 @media screen and (min-width: 860px) {
     .home-intro {
         height: 100vh;
+    }
+    .home-intro-content {
+        width: 70%;
+    }
+    .home-intro::after {
+        width: 70%;
     }
 }
 
@@ -45,12 +57,11 @@
     }
 }
 
-.home-intro-content {
-    width: 70%;
-}
-
 @media screen and (max-width: 920px) {
     .home-intro-content {
+        width: 80%;
+    }
+    .home-intro::after {
         width: 80%;
     }
 }
@@ -59,11 +70,14 @@
     .home-intro-content {
         width: 85%;
     }
+    .home-intro::after {
+        width: 85%;
+    }
 }
 
 @media screen and (max-width: 600px) {
-    .home-intro {
-        height: 105vh;
+    .home-intro::after {
+        width: 90%;
     }
     .home-intro-content {
         width: 90%;
@@ -72,9 +86,6 @@
 
 @media screen and (max-width: 560px) {
     .home-intro {
-        height: 100vh;
-    }
-    .home-intro-content {
-        background: linear-gradient(to right, black, rgba(0, 0, 0, 0));
+        height: max-content;
     }
 }

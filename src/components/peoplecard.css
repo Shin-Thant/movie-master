@@ -1,0 +1,46 @@
+.peoplepage-card {
+    width: 20%;
+}
+
+.peoplepage-img {
+    width: 100%;
+}
+.peoplepage-img img {
+    width: 100%;
+}
+.view-profile {
+    position: absolute;
+    bottom: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to top, black, rgba(0, 0, 0, 0));
+    transition: all 300ms ease;
+}
+.peoplepage-img:hover .view-profile {
+    bottom: 0;
+}
+
+@media screen and (max-width: 900px) {
+    .peoplepage-card {
+        width: 24%;
+    }
+}
+
+@media screen and (max-width: 730px) {
+    .peoplepage-card {
+        width: 28%;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .peoplepage-card {
+        width: 40%;
+    }
+}
+
+@media screen and (max-width: 520px) {
+    .peoplepage-card {
+        width: 70%;
+    }
+}
