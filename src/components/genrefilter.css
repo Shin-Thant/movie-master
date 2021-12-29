@@ -1,29 +1,69 @@
-/* width */
 .filter-container::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-    border-radius: 50px;
+    display: none;
+}
+.filter-container {
+    scroll-behavior: smooth;
 }
 
-/* Track */
-.filter-container::-webkit-scrollbar-track {
-    background: #1a1a1a;
-    border-radius: 50px;
+.filter-container::before,
+.filter-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 20px;
+    height: 100%;
+}
+.filter-container::before {
+    left: 0px;
+    background-image: linear-gradient(to right, black, rgba(0, 0, 0, 0));
+}
+.filter-container::after {
+    right: 0px;
+    background-image: linear-gradient(to left, black, rgba(0, 0, 0, 0));
 }
 
-/* Handle */
-.filter-container::-webkit-scrollbar-thumb {
-    background: rgb(105, 105, 105);
-    border-radius: 50px;
+.filter-container button {
+    transition: all 200ms ease;
+}
+.filter-container button:hover {
+    background-color: #f50000;
 }
 
-/* Handle on hover */
-.filter-container::-webkit-scrollbar-thumb:hover {
-    background: rgb(145, 145, 145);
+.click-left,
+.click-right {
+    position: relative;
+    overflow: hidden;
+    z-index: 2;
 }
 
-@media screen and (max-width: 580px) {
-    .filter-container::-webkit-scrollbar {
-        height: 7px;
-    }
+.click-left .slide,
+.click-right .slide {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    z-index: -1;
+    transition: all 350ms ease;
+}
+
+.click-left > .slide {
+    right: -100%;
+}
+.click-right > .slide {
+    left: -100%;
+}
+
+.click-left:hover .slide {
+    right: 0;
+}
+.click-left:hover {
+    color: black;
+}
+.click-right:hover .slide {
+    left: 0;
+}
+.click-right:hover {
+    color: black;
 }

@@ -12,11 +12,12 @@ import { Review } from "../../components/Review";
 import { TrendsSkeleton } from "../../components/TrendsSkeleton";
 import { TrendsCard } from "../../components/TrendsCard";
 import { addNavLink } from "../../redux/Actions/NavbarAction";
+import { FamousPeople } from "../../components/FamousPeople";
 
 export const Divider = () => {
     return (
         <div
-            className="w-full bg-secondary mx-auto rounded-full mt-8 mb-12"
+            className="w-11/12 bg-secondary mx-auto rounded-full mt-7 mb-12"
             style={{ height: "2px" }}
         ></div>
     );
@@ -53,13 +54,11 @@ export const DetailsPage = () => {
     };
 
     const similarLeft = () => {
-        document.getElementById("cards-container").scrollLeft -= 300;
+        document.getElementById("similar-container").scrollLeft -= 300;
     };
     const similarRight = () => {
-        document.getElementById("cards-container").scrollLeft += 300;
+        document.getElementById("similar-container").scrollLeft += 300;
     };
-
-    console.log(data?.episode_run_time, data?.id);
 
     return (
         <div className="text-white font-roboto bg-black min-h-screen w-full pt-28 pb-32">
@@ -108,7 +107,7 @@ export const DetailsPage = () => {
                     )}
 
                     {data?.number_of_seasons && data?.number_of_episodes && (
-                        <div className="flex items-center gap-3 mb-4">
+                        <div className="flex flex-wrap items-center md:gap-2 lg:gap-3 mb-4">
                             {data?.episode_run_time.length ? (
                                 <h2 className="font-semibold text-lg">
                                     Duration -{" "}
@@ -261,13 +260,16 @@ export const DetailsPage = () => {
 
                 {role === "cast" && (
                     <div className="w-full mx-auto relative">
-                        <div className="hidden md:flex left-btn text-4xl lg:text-5xl justify-center items-center text-gray-400 hover:text-gray-200">
-                            <button className="w-max" onClick={left}>
+                        <div className="left-btn text-4xl lg:text-5xl flex justify-center items-center text-gray-400 hover:text-gray-200">
+                            <button
+                                onClick={left}
+                                className="cursor-pointer w-max"
+                            >
                                 <BsChevronCompactLeft />
                             </button>
                         </div>
                         <div
-                            className="scroll w-full flex overflow-auto gap-3 px-5 py-3 md:px-20"
+                            className="w-full flex items-start overflow-auto gap-x-4 px-12 sm:px-22 lg:px-24 py-4"
                             id="castcrew-scroll"
                         >
                             {isLoading
@@ -291,17 +293,33 @@ export const DetailsPage = () => {
                                                   <span className="text-base text-center text-gray-300">
                                                       by {item.original_name}
                                                   </span>
+                                                  <button
+                                                      onClick={() =>
+                                                          navigate(
+                                                              `/people/${item.id}`
+                                                          )
+                                                      }
+                                                      className="bg-primary shadow-primary rounded-full text-base cursor-pointer px-4 py-2"
+                                                  >
+                                                      View Profile
+                                                  </button>
                                               </div>
                                           </div>
                                       ) : (
-                                          <div className="casts" key={item.id}>
+                                          <div
+                                              className="casts bg-gray-400 flex justify-center items-center h-full"
+                                              key={item.id}
+                                          >
                                               <h2>{item.character}</h2>
                                           </div>
                                       )
                                   )}
                         </div>
-                        <div className="hidden md:flex right-btn text-4xl lg:text-5xl text-gray-400 hover:text-gray-200">
-                            <button className="w-max" onClick={right}>
+                        <div className="right-btn text-4xl lg:text-5xl flex justify-center items-center text-gray-400 hover:text-gray-200">
+                            <button
+                                onClick={right}
+                                className="cursor-pointer w-max"
+                            >
                                 <BsChevronCompactRight />
                             </button>
                         </div>
@@ -322,8 +340,9 @@ export const DetailsPage = () => {
                                 <BsChevronCompactLeft />
                             </button>
                         </div>
+
                         <div
-                            className={`scroll w-full flex gap-3 px-5 md:px-16 py-3 overflow-auto`}
+                            className={`w-full flex gap-3 px-12 sm:px-22 lg:px-24 py-4 overflow-auto`}
                             id="castcrew-scroll"
                         >
                             {isLoading
@@ -378,9 +397,11 @@ export const DetailsPage = () => {
                 <h2 className="text-xl font-semibold mb-8 bottom-spot text-center">
                     Similar {mediaType}
                 </h2>
+
                 <Divider />
+
                 <div className="w-full relative">
-                    <div className="left-btn text-4xl lg:text-5xl hidden md:flex justify-center items-center text-gray-400 hover:text-gray-200">
+                    <div className="left-btn text-4xl lg:text-5xl flex justify-center items-center text-gray-400 hover:text-gray-200">
                         <button
                             onClick={similarLeft}
                             className="cursor-pointer w-max"
@@ -389,8 +410,8 @@ export const DetailsPage = () => {
                         </button>
                     </div>
                     <div
-                        className="scroll w-full flex items-start overflow-auto gap-x-4 px-9 sm:px-19 md:px-20 lg:px-24 py-3"
-                        id="cards-container"
+                        className="w-full flex gap-3 px-12 sm:px-22 lg:px-24 py-4 overflow-auto"
+                        id="similar-container"
                     >
                         {isLoading
                             ? [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map(
@@ -409,7 +430,7 @@ export const DetailsPage = () => {
                                   />
                               ))}
                     </div>
-                    <div className="right-btn text-4xl lg:text-5xl hidden md:flex justify-center items-center text-gray-400 hover:text-gray-200">
+                    <div className="right-btn text-4xl lg:text-5xl flex justify-center items-center text-gray-400 hover:text-gray-200">
                         <button
                             onClick={similarRight}
                             className="cursor-pointer w-max"

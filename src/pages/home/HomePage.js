@@ -16,6 +16,9 @@ import { TrendsCard } from "../../components/TrendsCard";
 import { BsChevronCompactRight, BsChevronCompactLeft } from "react-icons/bs";
 import { TrendsSkeleton } from "../../components/TrendsSkeleton";
 import { addNavLink } from "../../redux/Actions/NavbarAction";
+import { getPeople } from "../../api/getPeople";
+import { FamousPeople } from "../../components/FamousPeople";
+import { useNavigate } from "react-router-dom";
 
 export const HomePage = () => {
     const { activeLink } = useSelector((state) => state.navbar);
@@ -29,6 +32,8 @@ export const HomePage = () => {
     );
 
     const dispatch = useDispatch();
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         dispatch(addNavLink("explore"));
@@ -47,6 +52,8 @@ export const HomePage = () => {
             staleTime: 600000,
         }
     );
+
+    const people = useQuery("people", getPeople, { staleTime: 600000 });
 
     const typeMovie = () => {
         setActive("movie");
@@ -74,6 +81,17 @@ export const HomePage = () => {
     };
     const right = () => {
         document.getElementById("cards-container").scrollLeft += 300;
+    };
+
+    const peopleLeft = () => {
+        document.querySelector("#home-people-container").scrollLeft -= 300;
+    };
+    const peopleRight = () => {
+        document.querySelector("#home-people-container").scrollLeft += 300;
+    };
+
+    const seeMorePeople = () => {
+        navigate("/people");
     };
 
     return (
@@ -120,7 +138,7 @@ export const HomePage = () => {
                         </button>
                     </div>
                     <div
-                        className="w-full flex items-start overflow-auto gap-x-4 px-16 sm:px-22 lg:px-24 py-4"
+                        className="w-full flex items-start overflow-auto gap-x-4 px-12 sm:px-22 lg:px-24 py-4"
                         id="cards-container"
                     >
                         {trends.isLoading
@@ -149,9 +167,66 @@ export const HomePage = () => {
                         </button>
                     </div>
                 </div>
+
+                <div className="mt-20 w-4/5 mx-auto text-white flex items-end justify-between people-intro mb-5 pb-6">
+                    <h2 className="text-3xl font-bold people-section-head">
+                        People
+                    </h2>
+                    <h3
+                        onClick={seeMorePeople}
+                        className="text-primary font-bold hover:underline cursor-pointer"
+                    >
+                        see more
+                    </h3>
+                </div>
+
+                <div className="w-full relative text-white">
+                    <div className="left-btn text-4xl lg:text-5xl flex justify-center items-center text-gray-400 hover:text-gray-200">
+                        <button
+                            onClick={peopleLeft}
+                            className="cursor-pointer w-max"
+                        >
+                            <BsChevronCompactLeft />
+                        </button>
+                    </div>
+                    <div
+                        className="w-full flex items-start overflow-auto gap-x-4 px-12 sm:px-22 lg:px-24 py-4"
+                        id="home-people-container"
+                    >
+                        {people.isLoading
+                            ? [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map(
+                                  (item) => (
+                                      <div
+                                          key={item}
+                                          className="animate-pulse bg-gray-300 rounded-xl castSkeleton"
+                                      ></div>
+                                  )
+                              )
+                            : people.data?.results?.map(
+                                  (item, index) =>
+                                      index < 6 && (
+                                          <FamousPeople
+                                              key={index}
+                                              id={item.id}
+                                              img={item.profile_path}
+                                              name={item.name}
+                                          />
+                                      )
+                              )}
+                    </div>
+
+                    <div className="right-btn text-4xl lg:text-5xl flex justify-center items-center text-gray-400 hover:text-gray-200">
+                        <button
+                            onClick={peopleRight}
+                            className="cursor-pointer w-max"
+                        >
+                            <BsChevronCompactRight />
+                        </button>
+                    </div>
+                </div>
             </div>
 
-            <div className="w-full sm:w-11/12 md:w-10/12 s_tablet:w-4/5 mx-auto mt-20 pb-5">
+            <div className="w-full sm:w-11/12 md:w-10/12 s_tablet:w-4/5 mx-auto mt-28 pb-5">
                 <div className="flex justify-around items-center s_base:mb-5 sm:mb-7 md:mb-8 pb-6 types w-11/12 sm:w-full mx-auto">
                     <div
                         onClick={typeMovie}

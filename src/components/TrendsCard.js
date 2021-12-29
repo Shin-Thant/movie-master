@@ -76,7 +76,7 @@ export const TrendsCard = ({ mediaType, id, img, name, rating, count }) => {
             <div className="px-4">
                 <h2 className="font-bold text-lg mb-1">{name}</h2>
                 <div className="flex items-center justify-between">
-                    <div className="flex flex-col s_base:flex-row sm:flex-row md:flex-col lg:flex-row lgitems-center s_base:gap-3 sm:gap-2 md:gap-0 lg:gap-3">
+                    <div className="flex flex-wrap flex-col s_base:flex-row sm:flex-row md:flex-col lg:flex-row lgitems-center s_base:gap-3 sm:gap-2 md:gap-0 lg:gap-3">
                         <h4 className="flex items-center text-yellow-500 gap-1 font-bold">
                             <AiFillStar style={{ fontSize: "18px" }} /> {rating}
                         </h4>

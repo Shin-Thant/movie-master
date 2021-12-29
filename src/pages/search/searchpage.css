@@ -1,16 +1,16 @@
-.watchList-filter {
-    border-bottom: 1px solid #313131;
+.search-filter {
+    border-bottom: 1px solid #131313;
 }
 
-.activeWatchList {
+.activeSearch {
     position: relative;
 }
-.activeWatchList::before {
-    --bottom: -40%;
+.activeSearch::before {
+    --bottom: -20%;
 
     content: "";
     position: absolute;
-    bottom: -90%;
+    bottom: -60%;
     opacity: 0;
     left: 50%;
     transform: translate(-50%, 0);
@@ -20,4 +20,10 @@
     border-radius: 50%;
 
     animation: slideUp 500ms ease forwards;
+}
+
+@media screen and (max-width: 640px) {
+    .activeSearch::before {
+        bottom: -33%;
+    }
 }

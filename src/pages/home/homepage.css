@@ -41,16 +41,6 @@
 #cards-container::-webkit-scrollbar {
     display: none;
 }
-@media screen and (min-width: 770px) {
-    #cards-container::-webkit-scrollbar {
-        display: none;
-    }
-}
-@media screen and (max-width: 770px) {
-    #cards-container::-webkit-scrollbar {
-        display: block;
-    }
-}
 
 .left-btn,
 .right-btn {
@@ -66,7 +56,7 @@
 
 .left-btn {
     top: 0;
-    left: 0;
+    left: 0px;
     width: 9%;
     height: 100%;
     background-image: linear-gradient(
@@ -79,7 +69,7 @@
 }
 .right-btn {
     top: 0;
-    right: 0;
+    right: 0px;
     width: 9%;
     height: 100%;
     background-image: linear-gradient(
@@ -102,9 +92,33 @@
     }
 }
 
-@media screen and (max-width: 550px) {
-    .right-btn,
-    .left-btn {
+@media screen and (max-width: 400px) {
+    .left-btn,
+    .right-btn {
         display: none;
     }
+}
+
+.people-intro {
+    border-bottom: 1px solid #313131;
+}
+.people-section-head {
+    position: relative;
+}
+.people-section-head::before {
+    content: "";
+    position: absolute;
+    bottom: -30%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    background-color: red;
+    width: 5px;
+    min-height: 5px;
+    border-radius: 50%;
+}
+#home-people-container {
+    scroll-behavior: smooth;
+}
+#home-people-container::-webkit-scrollbar {
+    display: none;
 }

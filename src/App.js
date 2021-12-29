@@ -3,12 +3,14 @@ import "./App.css";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import ScrollToTop from "./components/ScrollToTop";
+import { CastProfile } from "./pages/castProfile/CastProfile";
 import ContactPage from "./pages/contact/ContactPage";
 import { DetailsPage } from "./pages/details/DetailsPage";
 import { HomePage } from "./pages/home/HomePage";
+import { PeoplePage } from "./pages/people/PeoplePage";
 import { SearchPage } from "./pages/search/SearchPage";
 import { WatchList } from "./pages/watchList/WatchList";
-
+console.log(process.env.REACT_APP_API_KEY);
 function App() {
     return (
         <>
@@ -21,6 +23,8 @@ function App() {
                     <Route path="/:mediaType/:id/*" element={<DetailsPage />} />
                     <Route path="/watchList" element={<WatchList />} />
                     <Route path="/contact" element={<ContactPage />} />
+                    <Route path="/people" element={<PeoplePage />} />
+                    <Route path="/people/:id" element={<CastProfile />} />
                 </Routes>
                 <Footer />
             </Router>

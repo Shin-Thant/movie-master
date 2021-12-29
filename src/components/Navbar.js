@@ -40,8 +40,8 @@ const Navbar = () => {
 
     return (
         <div className="navbar-wrapper font-roboto">
-            <nav className="top-nav w-full flex justify-between items-center text-white absolute top-0 left-0 right-0 z-20">
-                <div className="flex justify-between items-center w-full px-5 md:px-8">
+            <nav className="top-nav w-full flex justify-between items-center text-white absolute top-0 left-0 right-0 z-50">
+                <div className="flex justify-between items-center w-full s_base:px-5 md:px-8">
                     <button
                         onClick={() => navigate("/")}
                         className="logo flex items-center"
@@ -50,53 +50,54 @@ const Navbar = () => {
                             MOVIE<span className="text-primary">MASTER</span>{" "}
                         </h1>
                     </button>
-                    <div className="hidden sm:block">
-                        <ul className="flex gap-10 items-center cursor-pointer">
-                            <li>
-                                <button
-                                    onClick={goExplore}
-                                    className={`font-bold uppercase text-sm ${
-                                        activeLink === "explore" && "activeTop"
-                                    }`}
-                                >
-                                    explore
-                                </button>
-                            </li>
-                            <li>
-                                <button
-                                    onClick={goList}
-                                    className={`font-bold uppercase text-sm ${
-                                        activeLink === "watchlist" &&
-                                        "activeTop"
-                                    }`}
-                                >
-                                    watchlist
-                                </button>
-                            </li>
-                            <li>
-                                <button
-                                    onClick={goContact}
-                                    className={`font-bold uppercase text-sm ${
-                                        activeLink === "contact" && "activeTop"
-                                    }`}
-                                >
-                                    Contact
-                                </button>
-                            </li>
-                            <li>
-                                <button
-                                    className="bg-gray-50 text-primary p-2 rounded-full font-bold flex items-center gap-2"
-                                    onClick={goSearch}
-                                >
-                                    <FaSearch />
-                                </button>
-                            </li>
-                        </ul>
-                    </div>
+                    <ul className="hidden sm:flex gap-10 items-center cursor-pointer">
+                        <li>
+                            <button
+                                onClick={goExplore}
+                                className={`font-bold uppercase text-sm ${
+                                    activeLink === "explore" && "activeTop"
+                                }`}
+                            >
+                                explore
+                            </button>
+                        </li>
+                        <li>
+                            <button
+                                onClick={goList}
+                                className={`font-bold uppercase text-sm ${
+                                    activeLink === "watchlist" && "activeTop"
+                                }`}
+                            >
+                                watchlist
+                            </button>
+                        </li>
+                        <li>
+                            <button
+                                onClick={goContact}
+                                className={`font-bold uppercase text-sm ${
+                                    activeLink === "contact" && "activeTop"
+                                }`}
+                            >
+                                Contact
+                            </button>
+                        </li>
+                        <li>
+                            <button
+                                className={`p-2 rounded-full font-bold flex items-center gap-2 transition-all duration-200 ease-in ${
+                                    activeLink === "search"
+                                        ? "bg-primary text-white"
+                                        : "bg-gray-50 text-primary"
+                                }`}
+                                onClick={goSearch}
+                            >
+                                <FaSearch />
+                            </button>
+                        </li>
+                    </ul>
                 </div>
             </nav>
             <nav
-                className="bottom-nav text-white fixed bottom-0 w-full z-50 inline-flex sm:hidden justify-center"
+                className="bottom-nav text-white fixed bottom-0 w-full z-50 inline-flex sm:hidden justify-center z-50"
                 style={{ background: "#141414" }}
             >
                 <div className="pb-5">
