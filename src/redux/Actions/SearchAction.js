@@ -11,7 +11,7 @@ export const getSearchData = (name) => async (dispatch, getState) => {
 
     try {
         const { data } = await axios.get(
-            `https://api.themoviedb.org/3/search/multi?api_key=6e5732eb802fd488937cc99050f86e2c&query=${name}`
+            `https://api.themoviedb.org/3/search/multi?api_key=${process.env.REACT_APP_API_KEY}&query=${name}`
         );
 
         dispatch({ type: GET_SEARCH_SUCCESS, payload: data });

@@ -19,7 +19,7 @@ export const addToWatchList =
 
         try {
             const { data } = await axios.get(
-                `https://api.themoviedb.org/3/${media_type}/${id}?api_key=6e5732eb802fd488937cc99050f86e2c&append_to_response=videos`
+                `https://api.themoviedb.org/3/${media_type}/${id}?api_key=${process.env.REACT_APP_API_KEY}&append_to_response=videos`
             );
 
             if (data) {

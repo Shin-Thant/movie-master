@@ -23,7 +23,9 @@ export const addMovieType = (id) => async (dispatch, getState) => {
     dispatch({ type: GET_MOVIE_TYPE_REQUEST });
     try {
         const { data } = await axios.get(
-            `https://api.themoviedb.org/3/discover/movie?api_key=6e5732eb802fd488937cc99050f86e2c&with_genres=${getState().primaryMovieFilter.movieGenreIds.map(
+            `https://api.themoviedb.org/3/discover/movie?api_key=${
+                process.env.REACT_APP_API_KEY
+            }&with_genres=${getState().primaryMovieFilter.movieGenreIds.map(
                 (item) => `${item},`
             )}`
         );
@@ -43,7 +45,9 @@ export const removeMovieType = (id) => async (dispatch, getState) => {
     dispatch({ type: GET_MOVIE_TYPE_REQUEST });
     try {
         const { data } = await axios.get(
-            `https://api.themoviedb.org/3/discover/movie?api_key=6e5732eb802fd488937cc99050f86e2c&with_genres=${getState().primaryMovieFilter.movieGenreIds.map(
+            `https://api.themoviedb.org/3/discover/movie?api_key=${
+                process.env.REACT_APP_API_KEY
+            }&with_genres=${getState().primaryMovieFilter.movieGenreIds.map(
                 (item) => `${item},`
             )}`
         );
@@ -63,7 +67,9 @@ export const addSeriesType = (id) => async (dispatch, getState) => {
     dispatch({ type: GET_SERIES_TYPE_REQUEST });
     try {
         const { data } = await axios.get(
-            `https://api.themoviedb.org/3/discover/tv?api_key=6e5732eb802fd488937cc99050f86e2c&with_genres=${getState().primarySeriesFilter.seriesGenreIds.map(
+            `https://api.themoviedb.org/3/discover/tv?api_key=${
+                process.env.REACT_APP_API_KEY
+            }&with_genres=${getState().primarySeriesFilter.seriesGenreIds.map(
                 (item) => `${item},`
             )}`
         );
@@ -85,7 +91,9 @@ export const removeSeriesType = (id) => async (dispatch, getState) => {
     dispatch({ type: GET_SERIES_TYPE_REQUEST });
     try {
         const { data } = await axios.get(
-            `https://api.themoviedb.org/3/discover/tv?api_key=6e5732eb802fd488937cc99050f86e2c&with_genres=${getState().primarySeriesFilter.seriesGenreIds.map(
+            `https://api.themoviedb.org/3/discover/tv?api_key=${
+                process.env.REACT_APP_API_KEY
+            }&with_genres=${getState().primarySeriesFilter.seriesGenreIds.map(
                 (item) => `${item},`
             )}`
         );

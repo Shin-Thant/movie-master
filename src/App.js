@@ -10,7 +10,6 @@ import { HomePage } from "./pages/home/HomePage";
 import { PeoplePage } from "./pages/people/PeoplePage";
 import { SearchPage } from "./pages/search/SearchPage";
 import { WatchList } from "./pages/watchList/WatchList";
-console.log(process.env.REACT_APP_API_KEY);
 function App() {
     return (
         <>
